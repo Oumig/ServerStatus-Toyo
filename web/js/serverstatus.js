@@ -85,7 +85,7 @@ function uptime() {
 			if (!TableRow.length) {
 				$("#servers").append(
 					"<tr id=\"r" + i + "\" data-toggle=\"collapse\" data-target=\"#rt" + i + "\" class=\"accordion-toggle " + hack + "\">" +
-						"<td id=\"online4\"><div class=\"progress\"><div style=\"width: 100%;\" class=\"progress-bar progress-bar-warning\"><small>加载中</small></div></div></td>" +
+						"<td id=\"online4\"><div><div style=\"width: 100%;\" class=\"btn btn-sm btn-block btn-outline-warning\">加载中</div></div></td>" +
 						"<td id=\"name\">加载中</td>" +
 						"<td id=\"type\">加载中</td>" +
 						"<!-- td id=\"host\">加载中</td -->" +
@@ -94,11 +94,11 @@ function uptime() {
 						"<td id=\"load\">加载中</td>" +
 						"<td id=\"network\">加载中</td>" +
 						"<td id=\"traffic\">加载中</td>" +
-						"<td id=\"cpu\"><div class=\"progress progress-striped active\"><div style=\"width: 100%;\" class=\"progress-bar progress-bar-warning\"><small>加载中</small></div></div></td>" +
-						"<td id=\"memory\"><div class=\"progress progress-striped active\"><div style=\"width: 100%;\" class=\"progress-bar progress-bar-warning\"><small>加载中</small></div></div></td>" +
-						"<td id=\"hdd\"><div class=\"progress progress-striped active\"><div style=\"width: 100%;\" class=\"progress-bar progress-bar-warning\"><small>加载中</small></div></div></td>" +
+						"<td id=\"cpu\"><div><div style=\"width: 100%;\" class=\"btn btn-sm btn-block btn-outline-warning\"><small>加载中</small></div></div></td>" +
+						"<td id=\"memory\"><div><div style=\"width: 100%;\" class=\"btn btn-sm btn-block btn-outline-warning\"><small>加载中</small></div></div></td>" +
+						"<td id=\"hdd\"><div><div style=\"width: 100%;\" class=\"btn btn-sm btn-block btn-outline-warning\"><small>加载中</small></div></div></td>" +
 					"</tr>" +
-					"<tr class=\"expandRow " + hack + "\"><td colspan=\"12\"><div class=\"accordian-body collapse\" id=\"rt" + i + "\">" +
+					"<tr class=\"expandRow " + hack + "\" style=\"display:none;\"><td colspan=\"12\"><div class=\"accordian-body collapse\" id=\"rt" + i + "\">" +
 						"<div id=\"expand_mem\">加载中</div>" +
 						"<div id=\"expand_swap\">加载中</div>" +
 						"<div id=\"expand_hdd\">加载中</div>" +
@@ -117,11 +117,11 @@ function uptime() {
 
 			// Online4
 			if (result.servers[i].online4) {
-				TableRow.children["online4"].children[0].children[0].className = "progress-bar progress-bar-success";
-				TableRow.children["online4"].children[0].children[0].innerHTML = "<small>开启</small>";
+				TableRow.children["online4"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-success";
+				TableRow.children["online4"].children[0].children[0].innerHTML = "开启";
 			} else {
-				TableRow.children["online4"].children[0].children[0].className = "progress-bar progress-bar-danger";
-				TableRow.children["online4"].children[0].children[0].innerHTML = "<small>关闭</small>";
+				TableRow.children["online4"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-danger";
+				TableRow.children["online4"].children[0].children[0].innerHTML = "关闭";
 			}
 
 			// Online6
@@ -150,13 +150,13 @@ function uptime() {
 					TableRow.children["load"].innerHTML = "–";
 					TableRow.children["network"].innerHTML = "–";
 					TableRow.children["traffic"].innerHTML = "–";
-					TableRow.children["cpu"].children[0].children[0].className = "progress-bar progress-bar-danger";
+					TableRow.children["cpu"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-danger";
 					TableRow.children["cpu"].children[0].children[0].style.width = "100%";
 					TableRow.children["cpu"].children[0].children[0].innerHTML = "<small>关闭</small>";
-					TableRow.children["memory"].children[0].children[0].className = "progress-bar progress-bar-danger";
+					TableRow.children["memory"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-danger";
 					TableRow.children["memory"].children[0].children[0].style.width = "100%";
 					TableRow.children["memory"].children[0].children[0].innerHTML = "<small>关闭</small>";
-					TableRow.children["hdd"].children[0].children[0].className = "progress-bar progress-bar-danger";
+					TableRow.children["hdd"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-danger";
 					TableRow.children["hdd"].children[0].children[0].style.width = "100%";
 					TableRow.children["hdd"].children[0].children[0].innerHTML = "<small>关闭</small>";
 					if(ExpandRow.hasClass("in")) {
@@ -225,23 +225,23 @@ function uptime() {
 
 				// CPU
 				if (result.servers[i].cpu >= 90)
-					TableRow.children["cpu"].children[0].children[0].className = "progress-bar progress-bar-danger";
+					TableRow.children["cpu"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-danger";
 				else if (result.servers[i].cpu >= 80)
-					TableRow.children["cpu"].children[0].children[0].className = "progress-bar progress-bar-warning";
+					TableRow.children["cpu"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-warning";
 				else
-					TableRow.children["cpu"].children[0].children[0].className = "progress-bar progress-bar-success";
-				TableRow.children["cpu"].children[0].children[0].style.width = result.servers[i].cpu + "%";
+					TableRow.children["cpu"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-success";
+				//TableRow.children["cpu"].children[0].children[0].style.width = result.servers[i].cpu + "%";
 				TableRow.children["cpu"].children[0].children[0].innerHTML = result.servers[i].cpu + "%";
 
 				// Memory
 				var Mem = ((result.servers[i].memory_used/result.servers[i].memory_total)*100.0).toFixed(0);
 				if (Mem >= 90)
-					TableRow.children["memory"].children[0].children[0].className = "progress-bar progress-bar-danger";
+					TableRow.children["memory"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-danger";
 				else if (Mem >= 80)
-					TableRow.children["memory"].children[0].children[0].className = "progress-bar progress-bar-warning";
+					TableRow.children["memory"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-warning";
 				else
-					TableRow.children["memory"].children[0].children[0].className = "progress-bar progress-bar-success";
-				TableRow.children["memory"].children[0].children[0].style.width = Mem + "%";
+					TableRow.children["memory"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-success";
+				//TableRow.children["memory"].children[0].children[0].style.width = Mem + "%";
 				TableRow.children["memory"].children[0].children[0].innerHTML = Mem + "%";
 				ExpandRow[0].children["expand_mem"].innerHTML = "内存信息: " + bytesToSize(result.servers[i].memory_used*1024, 2) + " / " + bytesToSize(result.servers[i].memory_total*1024, 2);
 				// Swap
@@ -250,12 +250,12 @@ function uptime() {
 				// HDD
 				var HDD = ((result.servers[i].hdd_used/result.servers[i].hdd_total)*100.0).toFixed(0);
 				if (HDD >= 90)
-					TableRow.children["hdd"].children[0].children[0].className = "progress-bar progress-bar-danger";
+					TableRow.children["hdd"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-danger";
 				else if (HDD >= 80)
-					TableRow.children["hdd"].children[0].children[0].className = "progress-bar progress-bar-warning";
+					TableRow.children["hdd"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-warning";
 				else
-					TableRow.children["hdd"].children[0].children[0].className = "progress-bar progress-bar-success";
-				TableRow.children["hdd"].children[0].children[0].style.width = HDD + "%";
+					TableRow.children["hdd"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-success";
+				//TableRow.children["hdd"].children[0].children[0].style.width = HDD + "%";
 				TableRow.children["hdd"].children[0].children[0].innerHTML = HDD + "%";
 				ExpandRow[0].children["expand_hdd"].innerHTML = "硬盘信息: " + bytesToSize(result.servers[i].hdd_used*1024*1024, 2) + " / " + bytesToSize(result.servers[i].hdd_total*1024*1024, 2);
 
@@ -275,21 +275,21 @@ function uptime() {
 			$("#servers > tr.accordion-toggle").each(function(i) {
 				var TableRow = $("#servers tr#r" + i)[0];
 				var ExpandRow = $("#servers #rt" + i);
-				TableRow.children["online4"].children[0].children[0].className = "progress-bar progress-bar-error";
-				TableRow.children["online4"].children[0].children[0].innerHTML = "<small>错误</small>";
+				TableRow.children["online4"].children[0].children[0].className = "btn btn-sm btn-block btn-outline-danger";
+				TableRow.children["online4"].children[0].children[0].innerHTML = "错误";
 				//TableRow.children["online6"].children[0].children[0].className = "progress-bar progress-bar-error";
 				//TableRow.children["online6"].children[0].children[0].innerHTML = "<small>错误</small>";
-				TableRow.children["uptime"].innerHTML = "<div class=\"progress progress-striped active\"><div style=\"width: 100%;\" class=\"progress-bar progress-bar-error\"><small>错误</small></div></div>";
-				TableRow.children["load"].innerHTML = "<div class=\"progress progress-striped active\"><div style=\"width: 100%;\" class=\"progress-bar progress-bar-error\"><small>错误</small></div></div>";
-				TableRow.children["network"].innerHTML = "<div class=\"progress progress-striped active\"><div style=\"width: 100%;\" class=\"progress-bar progress-bar-error\"><small>错误</small></div></div>";
-				TableRow.children["traffic"].innerHTML = "<div class=\"progress progress-striped active\"><div style=\"width: 100%;\" class=\"progress-bar progress-bar-error\"><small>错误</small></div></div>";
-				TableRow.children["cpu"].children[0].children[0].className = "progress-bar progress-bar-error";
+				TableRow.children["uptime"].innerHTML = "<div><div style=\"width: 100%;\" class=\"btn btn-sm btn-block btn-outline-danger\"><small>错误</small></div></div>";
+				TableRow.children["load"].innerHTML = "<div><div style=\"width: 100%;\" class=\"btn btn-sm btn-block btn-outline-danger\"><small>错误</small></div></div>";
+				TableRow.children["network"].innerHTML = "<div><div style=\"width: 100%;\" class=\"btn btn-sm btn-block btn-outline-danger\"><small>错误</small></div></div>";
+				TableRow.children["traffic"].innerHTML = "<div><div style=\"width: 100%;\" class=\"btn btn-sm btn-block btn-outline-danger\"><small>错误</small></div></div>";
+				TableRow.children["cpu"].children[0].children[0].className = "btn btn-sm btn-block btn-outlinedanger";
 				TableRow.children["cpu"].children[0].children[0].style.width = "100%";
 				TableRow.children["cpu"].children[0].children[0].innerHTML = "<small>错误</small>";
-				TableRow.children["memory"].children[0].children[0].className = "progress-bar progress-bar-error";
+				TableRow.children["memory"].children[0].children[0].className = "btn btn-sm btn-block btn-outlinedanger";
 				TableRow.children["memory"].children[0].children[0].style.width = "100%";
 				TableRow.children["memory"].children[0].children[0].innerHTML = "<small>错误</small>";
-				TableRow.children["hdd"].children[0].children[0].className = "progress-bar progress-bar-error";
+				TableRow.children["hdd"].children[0].children[0].className = "btn btn-sm btn-block btn-outlinedanger";
 				TableRow.children["hdd"].children[0].children[0].style.width = "100%";
 				TableRow.children["hdd"].children[0].children[0].innerHTML = "<small>错误</small>";
 				if(ExpandRow.hasClass("in")) {
